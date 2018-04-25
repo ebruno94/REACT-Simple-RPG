@@ -4,12 +4,26 @@ import Welcome from './Welcome';
 import CharacterSelect from './CharacterSelect';
 import Footer from './Footer';
 import bg from '../assets/img/dungeon.png';
+import {v4} from 'uuid';
 
 export default class App extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      masterCharacterList:{}
+      masterCharacterList:{
+        [v4()] :{
+          name: '--',
+          charClass: '---'
+        },
+        [v4()] :{
+          name: '---',
+          charClass: '---'
+        },
+        [v4()] :{
+          name: '---',
+          charClass: '---'
+        }
+      }
     };
   }
 
@@ -56,7 +70,7 @@ export default class App extends React.Component{
         `}</style>
         <Switch>
           <Route exact path='/' component={Welcome}/>
-          <Route path='/character-select' render={()=><CharacterSelect characterList={this.state.masterCharacterList}/>}/>
+          <Route path='/character-select' render={()=><CharacterSelect masterCharacterList={this.state.masterCharacterList}/>}/>
         </Switch>
         <Footer/>
       </div>

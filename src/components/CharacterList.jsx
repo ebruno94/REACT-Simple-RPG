@@ -32,20 +32,19 @@ export default function CharacterList(props){
         {Object.keys(props.characterList).map(function(characterId){
           let character = props.characterList[characterId];
           <div className='box'>
-            <Character
+              <Character
               image={character.image}
               name={character.name}
-              class={character.class}
-              timeCreated={character.timeCreated}
+              charClass={character.charClass}
               key={characterId}
               characterId={characterId}/>;
           </div>
         })}
       </div>
     </div>
-  )
+  );
 }
 
 CharacterList.propTypes = {
   characterList: PropTypes.object
-}
+};
