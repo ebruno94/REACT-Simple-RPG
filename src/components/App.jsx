@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Welcome from './Welcome';
 import Footer from './Footer';
+import bg from '../assets/img/dungeon.png';
 
 export default class App extends React.Component{
   constructor(props){
@@ -35,6 +36,9 @@ export default class App extends React.Component{
 
           body{
             padding: 250px;
+            background-image: url(${bg});
+            background-repeat: no-repeat;
+            background-size: cover;
           }
 
           .container{
@@ -43,6 +47,7 @@ export default class App extends React.Component{
             text-align: center;
             padding: 20px;
             border-radius: 25px;
+            background-color: white;
           }
 
         `}</style>
