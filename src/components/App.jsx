@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Welcome from './Welcome';
+import CharacterSelect from './CharacterSelect';
 import Footer from './Footer';
 import bg from '../assets/img/dungeon.png';
 
@@ -36,6 +37,8 @@ export default class App extends React.Component{
 
           body{
             padding: 250px;
+            padding-left: 400px;
+            padding-right: 400px;
             background-image: url(${bg});
             background-repeat: no-repeat;
             background-size: cover;
@@ -53,6 +56,7 @@ export default class App extends React.Component{
         `}</style>
         <Switch>
           <Route exact path='/' component={Welcome}/>
+          <Route path='/character-select' render={()=><CharacterSelect characterList={this.state.masterCharacterList}/>}/>
         </Switch>
         <Footer/>
       </div>
