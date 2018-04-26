@@ -6,7 +6,7 @@ export default function Character(props){
   if (props.name === '---'){
     return(
       <div>
-        <Link style={{textDecoration: 'none', color: 'white'}} to='/character-create'><button style={{marginTop: '125px'}}>CREATE</button></Link>
+        <Link style={{textDecoration: 'none', color: 'white'}} to='/character-create'><button style={{marginTop: '125px'}} onClick={()=>{props.onCharacterSelection(props.characterId);}}>CREATE</button></Link>
       </div>
     );
   } else {

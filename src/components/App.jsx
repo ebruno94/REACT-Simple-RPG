@@ -14,28 +14,36 @@ export default class App extends React.Component{
     this.state={
       masterCharacterList:{
         [v4()] :{
-          name: 'Ernest',
-          charClass: 'Skirmisher',
-          image: 'https://img00.deviantart.net/2230/i/2017/035/0/8/dailyknight_8_by_rotaken-daxuj42.png'
-        },
-        [v4()] :{
           name: '---',
-          charClass: '---',
+          charClass: '',
           image: ''
         },
         [v4()] :{
           name: '---',
-          charClass: '---',
+          charClass: '',
+          image: ''
+        },
+        [v4()] :{
+          name: '---',
+          charClass: '',
           image: ''
         }
       },
       selectedCharacterSlot: null
     };
     this.handleNewCharacter = this.handleNewCharacter.bind(this);
+    this.handleCharacterSelection = this.handleCharacterSelection.bind(this);
   }
 
   handleNewCharacter(newCharacter){
-    console.log('Hello!');
+    console.log(newCharacter);
+    let newMasterCharacterList = Object.assign({}, this.state.masterCharacterList);
+    newMasterCharacterList[this.state.selectedCharacterSlot] = newCharacter;
+    this.setState({masterCharacterList: newMasterCharacterList});
+  }
+
+  handleCharacterSelection(characterId){
+    this.setState({selectedCharacterSlot: characterId});
   }
 
   render(){
@@ -95,7 +103,7 @@ export default class App extends React.Component{
         `}</style>
         <Switch>
           <Route exact path='/' component={Welcome}/>
-          <Route path='/character-select' render={()=><CharacterSelect masterCharacterList={this.state.masterCharacterList}/>}/>
+          <Route path='/character-select' render={()=><CharacterSelect masterCharacterList={this.state.masterCharacterList} onCharacterSelection={this.handleCharacterSelection}/>}/>
           <Route path='/character-create' render={()=><CharacterForm onNewCharacterCreation={this.handleNewCharacter}/>}/>
         </Switch>
         <Footer/>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import ClassDescription from './ClassDescription';
 
 export default class CharacterForm extends React.Component{
@@ -9,7 +9,8 @@ export default class CharacterForm extends React.Component{
     this.state = {
       selectValue: 'Vanguard',
       nameValue: '',
-      imageValue: ''
+      imageValue: '',
+      redirect: false
     }
     this.handleNewCharacterSubmission = this.handleNewCharacterSubmission.bind(this);
     this.handleClassSelect = this.handleClassSelect.bind(this);
@@ -18,10 +19,20 @@ export default class CharacterForm extends React.Component{
 
   handleNewCharacterSubmission(event){
     event.preventDefault();
+    this.props.onNewCharacterCreation({name: this.state.nameValue, charClass: this.state.selectValue, image: this.state.imageValue});
+    this.setState({redirect: true});
   }
 
   handleClassSelect(event){
-    this.setState({selectValue: event.target.value});
+    let e = event.target.value;
+    this.setState({selectValue: e});
+    if (e === 'Vanguard'){
+      this.setState({imageValue: 'https://pre00.deviantart.net/176d/th/pre/f/2016/002/3/9/demonknight_by_rotaken-d9mi82y.png'})
+    } else if (e === 'Skirmisher'){
+      this.setState({imageValue: 'https://img00.deviantart.net/2230/i/2017/035/0/8/dailyknight_8_by_rotaken-daxuj42.png'});
+    } else if (e === 'Elementalist')(
+      this.setState({imageValue: 'https://pre00.deviantart.net/9e44/th/pre/f/2015/239/2/2/shroomlock_by_rotaken-d97dc0u.png'})
+    );
   }
 
   handleNameInput(event){
@@ -40,6 +51,9 @@ export default class CharacterForm extends React.Component{
             }
         `}</style>
         <div className='container'>
+          {(this.state.redirect)
+          ? <Redirect to='/character-select'/>
+          : <span></span>}
           <h1>CREATE A CHARACTER</h1>
           <hr/>
           <form onSubmit={this.handleNewCharacterSubmission}>
@@ -48,9 +62,9 @@ export default class CharacterForm extends React.Component{
             <br/>
             <label for='characterName'>Select A Class</label>
             <select onChange={this.handleClassSelect}>
-              <option value='vanguard'>Vanguard</option>
-              <option value='skirmisher'>Skirmisher</option>
-              <option value='elementalist'>Elementalist</option>
+              <option value='Vanguard'>Vanguard</option>
+              <option value='Skirmisher'>Skirmisher</option>
+              <option value='Elementalist'>Elementalist</option>
             </select>
             <br/>
             <hr/>
@@ -58,7 +72,8 @@ export default class CharacterForm extends React.Component{
             <hr/>
             <div className='buttonContainer'>
               <Link style={{textDecoration: 'none', color: 'white', float: 'left'}} to='/character-select'><button>BACK</button></Link>
-              <Link style={{textDecoration: 'none', color: 'white', float: 'right'}} to='/character-select'><button type='submit'>CREATE</button></Link>
+
+              <button style={{float: 'right'}} type='submit'>CREATE</button>
             </div>
           </form>
         </div>

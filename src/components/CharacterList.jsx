@@ -8,7 +8,9 @@ export default function CharacterList(props){
       <div className='charContainer'>
         {Object.keys(props.characterList).map(characterId =>
           <div className='box'>
-            <Character image={props.characterList[characterId].image} name={props.characterList[characterId].name} charClass={props.characterList[characterId].charClass} key={characterId} characterId={characterId} />
+            <Character
+              onCharacterSelection={props.onCharacterSelection}
+              image={props.characterList[characterId].image} name={props.characterList[characterId].name} charClass={props.characterList[characterId].charClass} key={characterId} characterId={characterId} />
           </div>
         )}
       </div>
