@@ -28,7 +28,8 @@ export default class App extends React.Component{
           charClass: '---',
           image: ''
         }
-      }
+      },
+      selectedCharacterSlot: null
     };
     this.handleNewCharacter = this.handleNewCharacter.bind(this);
   }

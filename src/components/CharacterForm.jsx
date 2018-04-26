@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import ClassDescription from './ClassDescription';
 
 export default class CharacterForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
       selectValue: 'Vanguard',
-      nameValue: ''
+      nameValue: '',
+      imageValue: ''
     }
     this.handleNewCharacterSubmission = this.handleNewCharacterSubmission.bind(this);
     this.handleClassSelect = this.handleClassSelect.bind(this);
@@ -15,8 +17,6 @@ export default class CharacterForm extends React.Component{
   }
 
   handleNewCharacterSubmission(event){
-    console.log(this.state.nameValue);
-    console.log(this.state.selectValue);
     event.preventDefault();
   }
 
@@ -26,7 +26,6 @@ export default class CharacterForm extends React.Component{
 
   handleNameInput(event){
     this.setState({nameValue: event.target.value});
-    console.log(event.target.value);
   }
 
   render(){
@@ -54,6 +53,8 @@ export default class CharacterForm extends React.Component{
               <option value='elementalist'>Elementalist</option>
             </select>
             <br/>
+            <hr/>
+            <ClassDescription selectedClass={this.state.selectValue}/>
             <hr/>
             <div className='buttonContainer'>
               <Link style={{textDecoration: 'none', color: 'white', float: 'left'}} to='/character-select'><button>BACK</button></Link>
