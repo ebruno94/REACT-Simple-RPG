@@ -8,7 +8,7 @@ export default function CharacterList(props){
       <div className='charContainer'>
         {Object.keys(props.characterList).map(characterId =>
           <div className='box'>
-            <Character name={props.characterList[characterId].name} charClass={props.characterList[characterId].charClass} key={characterId} characterId={characterId} />
+            <Character image={props.characterList[characterId].image} name={props.characterList[characterId].name} charClass={props.characterList[characterId].charClass} key={characterId} characterId={characterId} />
           </div>
         )}
       </div>
@@ -18,15 +18,16 @@ export default function CharacterList(props){
           border: 1px solid black;
           box-shadow: 0px 0px 20px black;
           border-radius: 20px;
-          height: 200px;
-          width: 150px;
+          height: 300px;
+          width: 175px;
         }
 
         .charContainer{
           padding-top: 50px;
+          padding-bottom: 50px;
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          grid-column-gap: 50px;
+          grid-column-gap: 10px;
           height: 300px;
           justify-items: center;
         }

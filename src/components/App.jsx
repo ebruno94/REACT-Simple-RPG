@@ -12,16 +12,19 @@ export default class App extends React.Component{
     this.state={
       masterCharacterList:{
         [v4()] :{
-          name: '---',
-          charClass: '---'
+          name: 'Ernest',
+          charClass: 'Skirmisher',
+          image: 'https://img00.deviantart.net/2230/i/2017/035/0/8/dailyknight_8_by_rotaken-daxuj42.png'
         },
         [v4()] :{
           name: '---',
-          charClass: '---'
+          charClass: '---',
+          image: ''
         },
         [v4()] :{
           name: '---',
-          charClass: '---'
+          charClass: '---',
+          image: ''
         }
       }
     };
@@ -65,6 +68,9 @@ export default class App extends React.Component{
             padding: 20px;
             border-radius: 25px;
             background-color: white;
+            width: 750px;
+            margin-left: auto;
+            margin-right: auto;
           }
 
         `}</style>
