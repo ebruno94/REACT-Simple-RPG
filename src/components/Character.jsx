@@ -1,43 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 export default function Character(props){
-  let characterDisplay;
   if (props.name === '---'){
-      characterDisplay =
+    return(
       <div>
-        <button style={{marginTop: '75px', marginBottom:'25px'}}>CREATE</button>
+        <Link style={{textDecoration: 'none', color: 'white'}} to='/character-create'><button style={{marginTop: '125px'}}>CREATE</button></Link>
       </div>
+    );
   } else {
-    characterDisplay =
-    <div className='characterBox'>
-      <img style={{height: '250px', width: '175px', borderRadius: '20px'}} src={props.image}/>
-      <div className='charInfo'>
-        <h4>{props.name}</h4>
-        <h5>{props.charClass}</h5>
+    return(
+      <div>
+        <style jsx>{`
+          .characterBox{
+            justify-content: center;
+            background-color: black;
+            color: white;
+            font-family: cursive;
+            border-radius: 20px;
+          }
+
+          img{
+            height: 250px;
+            width: 175px;
+            border-radius: 20px;
+          }
+        `}</style>
+        <div className='characterBox'>
+          <img src={props.image}/>
+          <h4>{props.name}</h4>
+          <h5>{props.charClass}</h5>
+        </div>
       </div>
-    </div>
+    );
   }
-  return(
-    <div>
-      <style jsx>{`
-        .characterBox{
-          justify-content: center;
-        }
-
-        .charInfo{
-          background-color: black;
-          color: white;
-        }
-
-        .image{}
-          height: 175px;
-          width: 150px;
-        }
-      `}</style>
-      {characterDisplay}
-    </div>
-  );
 }
 
 Character.propTypes = {
