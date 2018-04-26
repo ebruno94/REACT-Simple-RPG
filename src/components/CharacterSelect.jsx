@@ -18,6 +18,7 @@ export default function CharacterSelect(props){
         <h1>SELECT A CHARACTER</h1>
         <hr/>
         <CharacterList characterList={props.masterCharacterList}/>
+        <hr/>
         <div className='buttonContainer'>
           <Link style={{textDecoration: 'none', color: 'white', float: 'left'}} to='/'><button>HOME</button></Link>
           <Link style={{textDecoration: 'none', color: 'white', float: 'right'}} to='/play'><button>START GAME</button></Link>

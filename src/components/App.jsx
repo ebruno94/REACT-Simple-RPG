@@ -12,7 +12,7 @@ export default class App extends React.Component{
     this.state={
       masterCharacterList:{
         [v4()] :{
-          name: '--',
+          name: '---',
           charClass: '---'
         },
         [v4()] :{
