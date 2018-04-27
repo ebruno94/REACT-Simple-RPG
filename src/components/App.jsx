@@ -33,6 +33,7 @@ export default class App extends React.Component{
     };
     this.handleNewCharacter = this.handleNewCharacter.bind(this);
     this.handleCharacterSelection = this.handleCharacterSelection.bind(this);
+    this.handleCharacterDeletion = this.handleCharacterDeletion.bind(this);
   }
 
   handleNewCharacter(newCharacter){
@@ -43,6 +44,14 @@ export default class App extends React.Component{
 
   handleCharacterSelection(characterId){
     this.setState({selectedCharacterSlot: characterId});
+  }
+
+  handleCharacterDeletion(characterId){
+    if (confirm('Do you wish to delete this character?')){
+      let newMasterCharacterList = Object.assign({}, this.state.masterCharacterList);
+      newMasterCharacterList[characterId] = {name: '---', charClass: '', image: ''};
+      this.setState({masterCharacterList: newMasterCharacterList});
+    }
   }
 
   render(){
@@ -90,7 +99,7 @@ export default class App extends React.Component{
             border-radius: 25px;
             background-color: white;
             width: 750px;
-            height: 575px;
+            height: 600px;
             margin-left: auto;
             margin-right: auto;
           }
@@ -102,7 +111,7 @@ export default class App extends React.Component{
         `}</style>
         <Switch>
           <Route exact path='/' component={Welcome}/>
-          <Route path='/character-select' render={()=><CharacterSelect masterCharacterList={this.state.masterCharacterList} onCharacterSelection={this.handleCharacterSelection}/>}/>
+          <Route path='/character-select' render={()=><CharacterSelect masterCharacterList={this.state.masterCharacterList} onCharacterSelection={this.handleCharacterSelection} onCharacterDeletion={this.handleCharacterDeletion}/>}/>
           <Route path='/character-create' render={()=><CharacterForm onNewCharacterCreation={this.handleNewCharacter}/>}/>
         </Switch>
         <Footer/>

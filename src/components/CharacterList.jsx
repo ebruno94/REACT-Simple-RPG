@@ -27,7 +27,8 @@ export default class CharacterList extends React.Component{
               <div>
                 <Character
                   onCharacterSelection={this.props.onCharacterSelection}
-                  image={this.props.characterList[characterId].image} name={this.props.characterList[characterId].name} charClass={this.props.characterList[characterId].charClass} key={characterId} characterId={characterId} />
+                  onCharacterDeletion={this.props.onCharacterDeletion}
+                  image={this.props.characterList[characterId].image} name={this.props.characterList[characterId].name} charClass={this.props.characterList[characterId].charClass} characterId={characterId} key={characterId} />
               </div>
             </label>
           )}

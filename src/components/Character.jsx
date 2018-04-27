@@ -7,9 +7,16 @@ export default function Character(props){
   if (props.name === '---'){
     displayedComponent = <div><Link style={{textDecoration: 'none', color: 'white'}} to='/character-create'><button style={{marginTop: '125px'}} onClick={()=>{props.onCharacterSelection(props.characterId);}}>CREATE</button></Link></div>
   } else {
-    displayedComponent = <div style={{backgroundColor: 'black', color: 'white', borderRadius: '20px', cursor: 'pointer'}}> <img style={{height: '250px', width: '175px', borderRadius: '20px'}} src={props.image}/>
-              <h4>{props.name}</h4>
-              <h5>{props.charClass}</h5> </div>
+    displayedComponent =
+    <div>
+      <div style={{backgroundColor: 'black', color: 'white', borderRadius: '20px', cursor: 'pointer'}}>
+        <img style={{height: '250px', width: '175px', borderRadius: '20px'}} src={props.image}/>
+        <h4>{props.name}</h4>
+        <h5>{props.charClass}</h5>
+      </div>
+      <br/>
+      <button onClick={()=>{props.onCharacterDeletion(props.characterId)}}>DELETE</button>
+    </div>
   }
   return(
     <div>
@@ -33,5 +40,7 @@ export default function Character(props){
 Character.propTypes = {
   name: PropTypes.string,
   charClass: PropTypes.string,
-  characterId: PropTypes.string
+  characterId: PropTypes.string,
+  onCharacterSelection: PropTypes.func,
+  onCharacterDeletion: PropTypes.func
 };

@@ -17,7 +17,8 @@ export default function CharacterSelect(props){
       <div className='container'>
         <h1>SELECT A CHARACTER</h1>
         <hr/>
-        <CharacterList characterList={props.masterCharacterList} onCharacterSelection={props.onCharacterSelection}/>
+        <CharacterList characterList={props.masterCharacterList} onCharacterSelection={props.onCharacterSelection} onCharacterDeletion={props.onCharacterDeletion}/>
+        <br/>
         <hr/>
         <div className='buttonContainer'>
           <Link style={{textDecoration: 'none', color: 'white', float: 'left'}} to='/'><button>HOME</button></Link>
