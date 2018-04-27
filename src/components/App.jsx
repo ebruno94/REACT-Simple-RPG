@@ -4,6 +4,8 @@ import Welcome from './Welcome';
 import CharacterCreationControl from './CharacterCreationControl';
 import CharacterForm from './CharacterForm';
 import CharacterSelect from './CharacterSelect';
+import GameCharacterDisplay from './GameCharacterDisplay';
+import Error404 from './Error404';
 import Footer from './Footer';
 import bg from '../assets/img/dungeon.png';
 import {v4} from 'uuid';
@@ -29,11 +31,13 @@ export default class App extends React.Component{
           image: ''
         }
       },
-      selectedCharacterSlot: null
+      selectedCharacterSlot: null,
+      currentCharacter: null
     };
     this.handleNewCharacter = this.handleNewCharacter.bind(this);
     this.handleCharacterSelection = this.handleCharacterSelection.bind(this);
     this.handleCharacterDeletion = this.handleCharacterDeletion.bind(this);
+    this.handleCurrentCharacter = this.handleCurrentCharacter.bind(this);
   }
 
   handleNewCharacter(newCharacter){
@@ -52,6 +56,11 @@ export default class App extends React.Component{
       newMasterCharacterList[characterId] = {name: '---', charClass: '', image: ''};
       this.setState({masterCharacterList: newMasterCharacterList});
     }
+  }
+
+  handleCurrentCharacter(characterId){
+    let newMasterCharacterList = Object.assign({}, this.state.masterCharacterList);
+    this.setState({currentCharacter: newMasterCharacterList[characterId]});
   }
 
   render(){
@@ -111,8 +120,12 @@ export default class App extends React.Component{
         `}</style>
         <Switch>
           <Route exact path='/' component={Welcome}/>
-          <Route path='/character-select' render={()=><CharacterSelect masterCharacterList={this.state.masterCharacterList} onCharacterSelection={this.handleCharacterSelection} onCharacterDeletion={this.handleCharacterDeletion}/>}/>
-          <Route path='/character-create' render={()=><CharacterForm onNewCharacterCreation={this.handleNewCharacter}/>}/>
+          <Route path='/character-select' render={(props)=><CharacterSelect masterCharacterList={this.state.masterCharacterList} onCharacterSelection={this.handleCharacterSelection} onCharacterDeletion={this.handleCharacterDeletion}
+          onCurrentCharacterSelect={this.handleCurrentCharacter}
+          currentRouterPath={props.location.pathname}/>}/>
+          <Route path='/character-create' render={(props)=><CharacterForm onNewCharacterCreation={this.handleNewCharacter} currentRouterPath={props.location.pathname}/>}/>
+          <Route path='/play' render={(props)=><GameCharacterDisplay character={this.state.currentCharacter} currentRouterPath={props.location.pathname}/>}/>
+          <Route component={Error404}/>
         </Switch>
         <Footer/>
       </div>

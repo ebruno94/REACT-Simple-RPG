@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link, Redirect} from 'react-router-dom';
 import ClassDescription from './ClassDescription';
+import ButtonContainer from './ButtonContainer';
 
 export default class CharacterForm extends React.Component{
   constructor(props){
@@ -74,10 +75,7 @@ export default class CharacterForm extends React.Component{
             <hr/>
             <ClassDescription selectedClass={this.state.selectValue} imageValue={this.state.imageValue}/>
             <hr/>
-            <div className='buttonContainer'>
-              <Link style={{textDecoration: 'none', color: 'white', float: 'left'}} to='/character-select'><button>BACK</button></Link>
-              <button style={{float: 'right'}} type='submit'>CREATE</button>
-            </div>
+            <ButtonContainer currentRouterPath={this.props.currentRouterPath}/>
           </form>
         </div>
       </div>

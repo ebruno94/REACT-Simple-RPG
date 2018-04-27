@@ -13,7 +13,7 @@ export default class CharacterList extends React.Component{
 
   handleOptionChange(event){
     this.setState({selectedCharacterSlot: event.target.value});
-    this.props.onCharacterSelection(this.state.selectedCharacterSlot);
+    this.props.onCurrentCharacterSelect(event.target.value);
   }
 
   render(){
@@ -62,5 +62,6 @@ export default class CharacterList extends React.Component{
 
 CharacterList.propTypes = {
   characterList: PropTypes.object,
-  onCharacterSelection: PropTypes.func
+  onCharacterSelection: PropTypes.func,
+  onCharacterDeletion: PropTypes.func
 };
