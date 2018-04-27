@@ -36,7 +36,6 @@ export default class App extends React.Component{
   }
 
   handleNewCharacter(newCharacter){
-    console.log(newCharacter);
     let newMasterCharacterList = Object.assign({}, this.state.masterCharacterList);
     newMasterCharacterList[this.state.selectedCharacterSlot] = newCharacter;
     this.setState({masterCharacterList: newMasterCharacterList});

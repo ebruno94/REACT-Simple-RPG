@@ -7,7 +7,7 @@ export default class CharacterForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      selectValue: 'Vanguard',
+      selectValue: '---',
       nameValue: '',
       imageValue: '',
       redirect: false
@@ -27,12 +27,15 @@ export default class CharacterForm extends React.Component{
     let e = event.target.value;
     this.setState({selectValue: e});
     if (e === 'Vanguard'){
-      this.setState({imageValue: 'https://pre00.deviantart.net/176d/th/pre/f/2016/002/3/9/demonknight_by_rotaken-d9mi82y.png'})
+      this.setState({imageValue: 'https://pre00.deviantart.net/176d/th/pre/f/2016/002/3/9/demonknight_by_rotaken-d9mi82y.png'});
     } else if (e === 'Skirmisher'){
       this.setState({imageValue: 'https://img00.deviantart.net/2230/i/2017/035/0/8/dailyknight_8_by_rotaken-daxuj42.png'});
-    } else if (e === 'Elementalist')(
+    } else if (e === 'Elementalist'){
+
       this.setState({imageValue: 'https://pre00.deviantart.net/9e44/th/pre/f/2015/239/2/2/shroomlock_by_rotaken-d97dc0u.png'})
-    );
+    } else if (e === '---'){
+      this.setState({imageValue: ''})
+    };
   }
 
   handleNameInput(event){
@@ -57,22 +60,22 @@ export default class CharacterForm extends React.Component{
           <h1>CREATE A CHARACTER</h1>
           <hr/>
           <form onSubmit={this.handleNewCharacterSubmission}>
-            <label>Character Name</label>
+            <label>Character Name </label>
             <input value={this.state.nameValue} onChange={this.handleNameInput}/>
             <br/>
-            <label for='characterName'>Select A Class</label>
+            <label for='characterName'>Select A Class </label>
             <select onChange={this.handleClassSelect}>
+              <option value='---'>---</option>
               <option value='Vanguard'>Vanguard</option>
               <option value='Skirmisher'>Skirmisher</option>
               <option value='Elementalist'>Elementalist</option>
             </select>
             <br/>
             <hr/>
-            <ClassDescription selectedClass={this.state.selectValue}/>
+            <ClassDescription selectedClass={this.state.selectValue} imageValue={this.state.imageValue}/>
             <hr/>
             <div className='buttonContainer'>
               <Link style={{textDecoration: 'none', color: 'white', float: 'left'}} to='/character-select'><button>BACK</button></Link>
-
               <button style={{float: 'right'}} type='submit'>CREATE</button>
             </div>
           </form>
