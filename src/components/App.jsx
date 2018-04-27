@@ -18,17 +18,44 @@ export default class App extends React.Component{
         [v4()] :{
           name: '---',
           charClass: '',
-          image: ''
+          image: '',
+          hp: '0',
+          maxHp: '100',
+          mp: '0',
+          maxMp: '100',
+          attack: '0',
+          defense: '0',
+          magic: '0',
+          exp: '0',
+          maxExp: '100'
         },
         [v4()] :{
           name: '---',
           charClass: '',
-          image: ''
+          image: '',
+          hp: '0',
+          maxHp: '100',
+          mp: '0',
+          maxMp: '100',
+          attack: '0',
+          defense: '0',
+          magic: '0',
+          exp: '0',
+          maxExp: '100'
         },
         [v4()] :{
           name: '---',
           charClass: '',
-          image: ''
+          image: '',
+          hp: '0',
+          maxHp: '100',
+          mp: '0',
+          maxMp: '100',
+          attack: '0',
+          defense: '0',
+          magic: '0',
+          exp: '0',
+          maxExp: '100'
         }
       },
       selectedCharacterSlot: null,

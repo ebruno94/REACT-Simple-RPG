@@ -28,12 +28,12 @@ export default class CharacterForm extends React.Component{
     let e = event.target.value;
     this.setState({selectValue: e});
     if (e === 'Vanguard'){
-      this.setState({imageValue: 'https://pre00.deviantart.net/176d/th/pre/f/2016/002/3/9/demonknight_by_rotaken-d9mi82y.png'});
+      this.setState({imageValue: 'https://pre00.deviantart.net/176d/th/pre/f/2016/002/3/9/demonknight_by_rotaken-d9mi82y.png', hp: '125', maxHp: '125', mp: '100', maxMp: '100', attack: '10', defense: '10', magic: '5', exp: '0', maxExp: '100'});
     } else if (e === 'Skirmisher'){
-      this.setState({imageValue: 'https://img00.deviantart.net/2230/i/2017/035/0/8/dailyknight_8_by_rotaken-daxuj42.png'});
+      this.setState({imageValue: 'https://img00.deviantart.net/2230/i/2017/035/0/8/dailyknight_8_by_rotaken-daxuj42.png', hp: '75', maxHp: '75', mp: '100', maxMp: '100', attack: '8', defense: '10', magic: '8', exp: '0', maxExp: '100'});
     } else if (e === 'Elementalist'){
 
-      this.setState({imageValue: 'https://pre00.deviantart.net/9e44/th/pre/f/2015/239/2/2/shroomlock_by_rotaken-d97dc0u.png'})
+      this.setState({imageValue: 'https://pre00.deviantart.net/9e44/th/pre/f/2015/239/2/2/shroomlock_by_rotaken-d97dc0u.png', hp: '100', maxHp: '100', mp: '100', maxMp: '100', attack: '5', defense: '10', magic: '10', exp: '0', maxExp: '100'});
     } else if (e === '---'){
       this.setState({imageValue: ''})
     };
