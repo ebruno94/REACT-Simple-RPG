@@ -2,42 +2,64 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Character from './Character';
 
-export default function CharacterList(props){
-  return(
-    <div>
-      <div className='charContainer'>
-        {Object.keys(props.characterList).map(characterId =>
-          <div className='box'>
-            <Character
-              onCharacterSelection={props.onCharacterSelection}
-              image={props.characterList[characterId].image} name={props.characterList[characterId].name} charClass={props.characterList[characterId].charClass} key={characterId} characterId={characterId} />
-          </div>
-        )}
-      </div>
-      <style jsx>{`
-        .box{
-          display: block;
-          border: 1px solid black;
-          box-shadow: 0px 0px 20px black;
-          border-radius: 20px;
-          height: 300px;
-          width: 175px;
-        }
+export default class CharacterList extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      selectedCharacterSlot: null
+    };
+    this.handleOptionChange = this.handleOptionChange.bind(this);
+  }
 
-        .charContainer{
-          padding-top: 50px;
-          padding-bottom: 50px;
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          grid-column-gap: 10px;
-          height: 300px;
-          justify-items: center;
-        }
-      `}</style>
-    </div>
-  );
+  handleOptionChange(event){
+    this.setState({selectedCharacterSlot: event.target.value});
+    this.props.onCharacterSelection(this.state.selectedCharacterSlot);
+  }
+
+  render(){
+    return(
+      <div>
+        <div className='charContainer'>
+          {Object.keys(this.props.characterList).map(characterId =>
+            <label>
+              <input type='radio' value={characterId} onChange={this.handleOptionChange}
+                checked={this.state.selectedCharacterSlot === characterId}/>
+              <div>
+                <Character
+                  onCharacterSelection={this.props.onCharacterSelection}
+                  image={this.props.characterList[characterId].image} name={this.props.characterList[characterId].name} charClass={this.props.characterList[characterId].charClass} key={characterId} characterId={characterId} />
+              </div>
+            </label>
+          )}
+        </div>
+        <style jsx>{`
+            .charContainer{
+              padding-top: 50px;
+              padding-bottom: 50px;
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              grid-column-gap: 10px;
+              height: 300px;
+              justify-items: center;
+            }
+
+            label > input {
+              visibility: hidden;
+              position: absolute;
+            }
+
+            label > input:checked + div{
+              border: 3px solid crimson;
+              box-shadow: 0px 0px 20px darkred;
+              border-radius: 25px;
+            }
+            `}</style>
+        </div>
+      );
+  }
 }
 
 CharacterList.propTypes = {
-  characterList: PropTypes.object
+  characterList: PropTypes.object,
+  onCharacterSelection: PropTypes.func
 };
