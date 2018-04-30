@@ -15,7 +15,7 @@ A website / program that lets users create a character with a name and pick a cl
 
 2. Run npm install to install all dependencies.
 
-3. Run npm run start and navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+3. Run npm run start and navigate to http://localhost:8080/. The app will automatically reload if you change any of the source files.
 
 ## Known Bugs
 
